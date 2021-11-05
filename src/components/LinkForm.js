@@ -1,7 +1,14 @@
 import React from "react";
 
 const LinkForm = () => {
-	return <h3>LinkForm</h3>;
+	return (
+
+			<form>
+				
+
+
+			</form>
+		)
 };
 
 export default LinkForm;

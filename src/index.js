@@ -5,11 +5,16 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 //import './firebase'
 import 'bootswatch/dist/sketchy/bootstrap.min.css'
+import firebaseConfig from './firebase-config';
+import {
+	FirebaseAppProvider
+} from 'reactfire';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+	<FirebaseAppProvider firebaseConfig={firebaseConfig}>
+		<App />
+	</FirebaseAppProvider>
+  ,
   document.getElementById('root')
 );
 
