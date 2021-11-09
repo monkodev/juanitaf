@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import 'firebase/auth';
 import {useFirebaseApp, useUser} from 'reactfire';
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 export default (props) => {
 	const [email, setEmail ] = useState('');
@@ -9,10 +9,8 @@ export default (props) => {
 	const firebase = useFirebaseApp();
 	
 	const auth=getAuth();
-	const submit = async ()=>{ 
-		await createUserWithEmailAndPassword(auth,email,password);
-	
-
+	const login = async ()=> {
+		await signInWithEmailAndPassword(auth,email,password);
 	}
 	return(
 		<div>
@@ -22,8 +20,9 @@ export default (props) => {
 				<input type="email" id="email" onChange={(ev)=> setEmail(ev.target.value)} /> <br /> <br />
 				<label htmlFor="password">Clave  &nbsp;  </label>
 				<input type="password" id="password" onChange={(ev)=> setPassword(ev.target.value)} /> <br /> <br />
-				<button onClick={submit}> Iniciar Sesión </button>
-			</div>
+				&nbsp;  &nbsp;  <button onClick={login}>Iniciar Sesión</button>
+			</div><br />
+			<div className="text-danger">&nbsp;  &nbsp; Mensaje de error</div>
 		</div>
 	)
 

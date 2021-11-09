@@ -5,6 +5,7 @@ import React from 'react';
 import Links from './components/Links'
 import LinkForm from './components/LinkForm'
 import Auth from './Auth';
+import Home from "./Home";
 
 function App() {
   return (
