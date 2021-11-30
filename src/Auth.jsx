@@ -8,9 +8,26 @@ export default (props) => {
 	const [password, setPassword ] = useState('');
 	const firebase = useFirebaseApp();
 	
+	
 	const auth=getAuth();
 	const login = async ()=> {
-		await signInWithEmailAndPassword(auth,email,password);
+		await signInWithEmailAndPassword(auth,email,password)
+		.then((userCredential) => {
+    		// Signed in
+    		const user = userCredential.user;
+    		
+			console.log("Adentro");
+    		
+			
+  			})
+  		.catch((error) => {
+    			const mostrarError = "Credenciales no válidas";
+    			
+    			console.log(email,password);
+    			console.log(mostrarError);
+    		// ..
+  	});
+   		
 	}
 	return(
 		<div>
@@ -22,7 +39,7 @@ export default (props) => {
 				<input type="password" id="password" onChange={(ev)=> setPassword(ev.target.value)} /> <br /> <br />
 				&nbsp;  &nbsp;  <button onClick={login}>Iniciar Sesión</button>
 			</div><br />
-			<div className="text-danger">&nbsp;  &nbsp; Mensaje de error</div>
+			<div className="text-danger">&nbsp;  &nbsp; {props.mostrarError}</div>
 		</div>
 	)
 
